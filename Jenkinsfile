@@ -21,7 +21,12 @@ pipeline
    		//}
   	        //}
 
+		steps{
+		withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'hub-pass', usernameVariable: 'hub-userhub')]) {
+
 			sh 'docker build -t sowmianreddy/node-express-helloworld:$BUILD_ID'
+		}
+		}
 		}
 		stage('Push Docker Image')
 		{
