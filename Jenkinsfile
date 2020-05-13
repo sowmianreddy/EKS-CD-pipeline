@@ -16,7 +16,7 @@ pipeline
 				{
 
 					sh '''
-					docker build -t sowmianreddy/node-express-helloworld:$BUILD_ID .
+					sudo docker build -t sowmianreddy/node-express-helloworld:$BUILD_ID .
 					'''
 				}
 			}
