@@ -1,51 +1,16 @@
-pipeline
-{
-
-	agent any
-
-	stages
-	{
-
-		stage('Build Docker Image')
-		{
-
-
-			steps
-			{
-				withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'HUB_PASS', usernameVariable: 'HUB_USER')])
-				{
-
-					sh '''
-					docker --version
-					docker build -t node-express-helloworld:$BUILD_ID .
-					'''
-				}
-			}
-		}
-
-
-	//	stage('Push Docker Image')
-	//	{
-	//		sh 'docker push sowmianreddy/node-express-helloworld'
-	//	}
-
-		//stage('Set Cluster context')
-		//{
-
-		//}
-
-		//stage('Deploy to cluster')
-		//{
-
-		//}
-
-
-	}
-
-  
-
-
-
+pipeline {
+  environment {
+    registry = "sowmianreddy/node-express-helloworld"
+    registryCredential = 'dockerhub'
+  }
+  agent any
+  stages {
+    stage('Building image') {
+      steps{
+        script {
+          docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+  }
 }
-
-
