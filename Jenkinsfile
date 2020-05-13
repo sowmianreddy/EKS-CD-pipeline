@@ -10,30 +10,23 @@ pipeline
 		{
 
 
-		//stage('Build Docker Image') {
-   		//steps {
-    		//withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD']])
-		//{
-     		//sh '''
-      		//	docker build -t andresaaap/cloudcapstone:$BUILD_ID .
-     		//'''
-    		//}
-   		//}
-  	        //}
+			steps
+			{
+				withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'HUB_PASS', usernameVariable: 'HUB_USER')])
+				{
 
-		steps{
-		withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'hub-pass', usernameVariable: 'hub-userhub')]) {
+					sh '''
+					docker build -t sowmianreddy/node-express-helloworld:$BUILD_ID
+					'''
+				}
+			}
+		}
 
-			sh '''
-			docker build -t sowmianreddy/node-express-helloworld:$BUILD_ID
-			'''
-		}
-		}
-		}
-		stage('Push Docker Image')
-		{
-			sh 'docker push sowmianreddy/node-express-helloworld'
-		}
+
+	//	stage('Push Docker Image')
+	//	{
+	//		sh 'docker push sowmianreddy/node-express-helloworld'
+	//	}
 
 		//stage('Set Cluster context')
 		//{
