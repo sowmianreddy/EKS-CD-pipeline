@@ -34,7 +34,7 @@ pipeline {
 
 		steps
 		{
-		 	sh ' kubectl apply -f deployment.yml '
+		 	sh ' /usr/bin/kubectl apply -f deployment.yml '
 		}
 
 
