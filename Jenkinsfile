@@ -15,6 +15,7 @@ pipeline {
         			}
       		      }
     	}
+	/*
 	stage('Push Image to Registry')
 	{
 		steps
@@ -29,12 +30,14 @@ pipeline {
 		}
 
 	}
+	*/
 	stage('Deploy image to cluster')
 	{
 
 		steps
 		{
 				sh '''
+                                 /usr/local/bin/kubectl config use-context arn:aws:eks:us-west-2:325940544892:cluster/scrumptious-mongoose-1589553338
 				/usr/local/bin/kubectl version
 				'''
 				 //  /usr/local/bin/kubectl apply -f deployment.yml
