@@ -34,7 +34,10 @@ pipeline {
 
 		steps
 		{
-		 	sh ' /usr/bin/kubectl apply -f deployment.yml '
+			 script{
+                  		 def image_id = registry + ":$BUILD_NUMBER"
+                   		sh "ansible-playbook  ansible-playbook.yml --extra-vars \"image_id=${image_id}\""
+               			}	
 		}
 
 
