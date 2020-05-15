@@ -34,11 +34,14 @@ pipeline {
 
 		steps
 		{
-			sh '''
-			/usr/local/bin/kubectl version
-			/usr/local/bin/kubectl apply -f deployment.yml
-			/usr/local/bin/kubectl apply -f service.yml
-			'''
+			withKubeConfig(credentialsId: 'aws-eks-cluster') 
+			{
+				sh '''
+				/usr/local/bin/kubectl version
+				/usr/local/bin/kubectl apply -f deployment.yml
+				/usr/local/bin/kubectl apply -f service.yml
+				'''
+			}	
 
 		}
 
