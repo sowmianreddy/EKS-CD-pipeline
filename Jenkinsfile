@@ -7,7 +7,7 @@ pipeline {
   agent any
   stages 
   {
-  	stage('Building image') 
+  	stage('Build Docker Image') 
 	{	
       		steps{
        			 script {
@@ -15,7 +15,7 @@ pipeline {
         			}
       		      }
     	}
-	/*
+
 	stage('Push Image to Registry')
 	{
 		steps
@@ -30,20 +30,19 @@ pipeline {
 		}
 
 	}
-	*/
+	
 	stage('Deploy image to cluster')
 	{
 
 		steps
 		{
-		 	withAWS(credentials:'aws-eks-cluster')
+		 	withAWS(credentials:'aws-eks')
 			{
 				sh '''
 				/usr/local/bin/kubectl --v=10 version
 			  	/usr/local/bin/kubectl apply -f deployment.yml
+				/usr/local/bin/kubectl apply -f service.yml
 				'''
-			
-				//  /usr/local/bin/kubectl apply -f service.yml
 			}	
 			
 
