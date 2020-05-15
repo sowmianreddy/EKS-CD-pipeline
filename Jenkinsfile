@@ -39,7 +39,7 @@ pipeline {
 		 	withAWS(credentials:'aws-eks-cluster')
 			{
 				sh '''
-				/usr/local/bin/kubectl version
+				/usr/local/bin/kubectl --v=10 version
 			  	/usr/local/bin/kubectl apply -f deployment.yml
 				'''
 			
