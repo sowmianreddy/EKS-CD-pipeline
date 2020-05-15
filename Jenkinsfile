@@ -35,9 +35,9 @@ pipeline {
 		steps
 		{
 			sh '''
-			kubectl --version
-			kubectl apply -f deployment.yml
-			kubectl apply -f service.yml
+			/usr/local/bin/kubectl --version
+			/usr/local/bin/kubectl apply -f deployment.yml
+			/usr/local/bin/kubectl apply -f service.yml
 			'''
 
 		}
