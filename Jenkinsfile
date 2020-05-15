@@ -34,7 +34,7 @@ pipeline {
 
 		steps
 		{
-			withKubeConfig(credentialsId: 'aws-eks-cluster') 
+			withKubeConfig(credentialsId: 'aws-eks-cluster', clusterName: 'scrumptious-mongoose-1589553338') 
 			{
 				sh '''
 				/usr/local/bin/kubectl version
