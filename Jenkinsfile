@@ -36,13 +36,17 @@ pipeline {
 
 		steps
 		{
+		 	withAWS(credentials:'aws-eks-cluster')
+			{
 				sh '''
 				aws configure --profile $HOME/.aws/profile
                                  /usr/local/bin/kubectl config use-context arn:aws:eks:us-west-2:325940544892:cluster/scrumptious-mongoose-1589553338
 				/usr/local/bin/kubectl version
 				'''
 				 //  /usr/local/bin/kubectl apply -f deployment.yml
+			
 				//  /usr/local/bin/kubectl apply -f service.yml
+			}	
 			
 
 		}
