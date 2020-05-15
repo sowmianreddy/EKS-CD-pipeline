@@ -16,5 +16,5 @@ spec:
       spec:
         containers:
          - name : node-express-helloworld
-           image  :  "{{ image_id }}"
+           image  : sowmianreddy/node-express-helloworld:$BUILD_ID
 
