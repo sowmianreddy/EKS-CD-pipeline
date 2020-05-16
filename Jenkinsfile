@@ -7,6 +7,7 @@ pipeline {
   agent any
   stages 
   {
+        /*
   	stage('Build Docker Image') 
 	{	
       		steps{
@@ -30,7 +31,7 @@ pipeline {
 		}
 
 	}
-	
+	*/
 	stage('Deploy image to cluster')
 	{
 

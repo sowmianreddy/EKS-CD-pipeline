@@ -1,0 +1,20 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+   name : node-webapp-deployment
+   labels:
+     app : node
+spec:
+   replicas : 3
+   selector:
+      matchLabels:
+       app : node
+   template:
+      metadata:
+        labels:
+          app : node
+      spec:
+        containers:
+         - name : node-express-helloworld
+           image  : 325940544892.dkr.ecr.us-west-2.amazonaws.com/python-app-aws:latest  
+
